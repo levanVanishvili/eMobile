@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using eMobile.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,5 +13,6 @@ namespace eMobile.Data
             : base(options)
         {
         }
+        public DbSet<OpSystem> OperatingSystems { get; set; }
     }
 }

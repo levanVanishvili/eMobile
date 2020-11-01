@@ -23,7 +23,6 @@ namespace eMobile.Data.Repository
             if (objFromDb!=null)
             {
                 objFromDb.Name = opSystem.Name;
-                _db.SaveChanges();
             }           
         }
     }

@@ -7,6 +7,8 @@ namespace eMobile.Data.Repository.IRepository
 {
     public interface IUnitOfWork: IDisposable
     {
-        IOpSystemRepository opSystem { get; }
+        IOpSystemRepository OpSystem { get; }
+
+        void Save();
     }
 }

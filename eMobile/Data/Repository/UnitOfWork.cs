@@ -19,7 +19,6 @@ namespace eMobile.Data.Repository
 
         public IOpSystemRepository OpSystem { get; private set; }
 
-        public IOpSystemRepository opSystem => throw new NotImplementedException();
 
         public void Dispose()
         {

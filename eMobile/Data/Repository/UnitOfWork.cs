@@ -15,9 +15,14 @@ namespace eMobile.Data.Repository
         {
             _db = db;
             OpSystem = new OpSystemRepository(_db);
+            Brand = new BrandRepository(_db);
+            Product = new ProductRepository(_db);
         }
 
-        public IOpSystemRepository OpSystem { get; private set; }
+        public IOpSystemRepository OpSystem { get; private set;}
+        public IBrandRepository Brand { get; private set; }
+        public IProductRepository Product { get; private set; }
+
 
 
         public void Dispose()

@@ -1,0 +1,65 @@
+﻿@model eMobile.Models.Product
+
+<form method="post">
+    <div class="container backgroundWhite">
+        <div class="card">
+            <div class="card-header bg-light text-light ml-0 row container">
+                <div class="col-12 col-md-6">
+                    <h1 class="text-danger">@Model.Name</h1>
+                    <p class="text-warning">by @Model.Brand.Name</p>
+                </div>
+                <div class="col-12 col-md-6 text-md-right pt-4">
+                    <h4 style="color: darkblue">Price:&nbsp &nbsp &nbsp &nbsp <b class="">@Model.Price.ToString("c")</b></h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="container rounded p-2">
+                    <div class="row">
+                        <div class="col-12 col-lg-7">
+
+                            <div class="row pl-2">
+                                <div class="col-3 text-primary"><h5>Operating System:</h5></div>
+                                <div class="col-4 text-primary"><h6>@Model.OpSystem.Name</h6></div>
+                            </div>
+                            <div class="row pl-2">
+                                <div class="col-3 text-primary"><h5>Dimensions:</h5></div>
+                                <div class="col-4 text-primary"><h6>@Model.Dimensions</h6></div>
+                            </div>
+                            <div class="row pl-2">
+                                <div class="col-3 text-primary"><h5>Display Size:</h5></div>
+                                <div class="col-4 text-primary"><h6>@Model.DisplaySize</h6></div>
+                            </div>
+                            <div class="row pl-2">
+                                <div class="col-3 text-primary"><h5>Resolution:</h5></div>
+                                <div class="col-4 text-primary"><h6>@Model.Resolution</h6></div>
+                            </div>
+                            <div class="row pl-2">
+                                <div class="col-3 text-primary"><h5>Weight:</h5></div>
+                                <div class="col-4 text-primary"><h6>@Model.Weight</h6></div>
+                            </div>
+                            <div class="row pl-2">
+                                <div class="col-3 text-primary"><h5>CPU:</h5></div>
+                                <div class="col-4 text-primary"><h6>@Model.CPU</h6></div>
+                            </div>
+                            <div class="row pl-2">
+                                <div class="col-3 text-primary"><h5>ROM Memory:</h5></div>
+                                <div class="col-4 text-primary"><h6>@Model.RomMemory</h6></div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-5 offset-lg-0 text-center">
+                            <img src="@Model.FileUrl" width="100%" class="rounded" />
+                        </div>                       
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-12">
+                        <button asp-action="Index" class="btn btn-success form-control  btn-square btn-lg" style="height:50px;">Back to List</button>
+                    </div>                   
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

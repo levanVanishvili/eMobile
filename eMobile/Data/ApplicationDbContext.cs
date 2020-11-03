@@ -14,5 +14,9 @@ namespace eMobile.Data
         {
         }
         public DbSet<OpSystem> OperatingSystems { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<Product> Products { get; set; }
+
+
     }
 }

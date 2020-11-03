@@ -8,6 +8,8 @@ namespace eMobile.Data.Repository.IRepository
     public interface IUnitOfWork: IDisposable
     {
         IOpSystemRepository OpSystem { get; }
+        IBrandRepository Brand { get; }
+        IProductRepository Product { get; }
 
         void Save();
     }

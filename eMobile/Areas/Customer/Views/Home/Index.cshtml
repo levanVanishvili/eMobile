@@ -1,36 +1,60 @@
 ﻿@model IEnumerable<eMobile.Models.Product>
 
-<div class="row pb-3 backgroundWhite">
+<div class="row pb-3 bg-light">
 
-    <div class="col-lg-3">
-        <h1 class="my-4">Shop Name</h1>
-        <form asp-controller="User" asp-action="search">
-            <input type="text" placeholder="Name" name="search" />
-            <button class="btn btn-primary" id="searchBtn"></button>
+    <div class="col-lg-3 p-4">
+        <form method="get" asp-controller="Home" asp-action="Index" >
+            <div>
+                <input class="form-control mb-2 mr-sm-2" type="search" placeholder="Phone Name" name="searchProduct" />
+                <input class="form-control mb-2 mr-sm-2" type="search" placeholder="Brand Name" name="searchBrand" />
+
+                <div class="form-check ">
+                    <h5 class="text-lg-center text-black">Price</h5>
+                    <div class="form-check-inline">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Min" name="searchMin">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Max" name="searchMax">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="btn form-control">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </div>
         </form>
     </div>
 
-    @foreach (var product in Model)
-    {
-    <div class="col-lg-3 col-md-6">
-        <div class="row p-2">
-            <div class="col-12  p-1" style="border:1px solid #008cba; border-radius: 5px;">
-                <div class="card" style="border:0px;">
-                    <img src="@product.FileUrl" class="card-img-top rounded" />
-                    <div class="pl-1">
-                        <p class="card-title h5"><b style="color:#2c3e50">@product.Name</b></p>
-                        <p class="card-title text-primary">by <b>@product.Brand.Name</b></p>
-                    </div>                   
-                    <div style="padding-left:5px;">
-                        <p style="color:maroon">Price: <b class="">@product.Price.ToString("c")</b></p>
+
+    <div class="col-lg-9 p-2">
+        <div class="row">
+
+            @foreach (var product in Model)
+            {
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="row p-2">
+                        <div class="col-12  p-1" style="border:1px solid #008cba; border-radius: 5px;">
+                            <div class="card" style="border:0px;">
+                                <img src="@product.FileUrl" class="card-img-top rounded" />
+                                <div class="pl-1">
+                                    <p class="card-title h5"><b style="color:#2c3e50">@product.Name</b></p>
+                                    <p class="card-title text-primary">by <b>@product.Brand.Name</b></p>
+                                </div>
+                                <div style="padding-left:5px;">
+                                    <p style="color:maroon">Price: <b class="">@product.Price.ToString("c")</b></p>
+                                </div>
+                            </div>
+                            <div>
+                                <a asp-action="Details" class="btn btn-primary form-control" asp-route-id="@product.Id">Details</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <a asp-action="Details" class="btn btn-primary form-control" asp-route-id="@product.Id">Details</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    }
 
+            }
+        </div>
+
+
+    </div>
 </div>
+
+

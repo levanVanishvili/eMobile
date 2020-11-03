@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using eMobile.Models;
 using eMobile.Data.Repository.IRepository;
+using eMobile.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace eMobile.Areas.Customer.Controllers
 {
@@ -22,11 +24,36 @@ namespace eMobile.Areas.Customer.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index()
+
+        [HttpGet]
+        public IActionResult Index(string searchProduct, string searchBrand, double searchMin, double searchMax)
         {
             IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties: ("OpSystem,Brand"));
+
+            if (!string.IsNullOrEmpty(searchProduct) && !string.IsNullOrEmpty(searchBrand) && searchMin!=0
+                                                                                           && searchMax !=0)
+            {
+                productList = productList.Where(s => s.Name.Contains(searchProduct) && s.Brand.Name.Contains(searchBrand) &&
+                                                   s.Price>=searchMin && s.Price<=searchMax);
+            }
+            if (!string.IsNullOrEmpty(searchProduct) && string.IsNullOrEmpty(searchBrand))
+            {
+                productList = productList.Where(s => s.Name.Contains(searchProduct));
+            }
+            if (string.IsNullOrEmpty(searchProduct) && !string.IsNullOrEmpty(searchBrand))
+            {
+                productList = productList.Where(s => s.Brand.Name.Contains(searchBrand));
+            }
             return View(productList);
         }
+
+
+
+
+
+
+
+
 
         public IActionResult Details(int id)
         {

@@ -34,10 +34,13 @@ namespace eMobile.Models
         public string RomMemory { get; set; }
 
         [Required]
-        [Range(1,15000)]
+        [Range(1,15000,ErrorMessage ="Please enter a value between 1 and 15000")]
         public double Price { get; set; }
 
         public string FileUrl { get; set; }
+
+        [NotMapped]
+        public List<string> Fieles { get; set; }
 
         [Required]
         public int OpSystemId { get; set; }

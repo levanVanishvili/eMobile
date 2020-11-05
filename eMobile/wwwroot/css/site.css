@@ -69,3 +69,57 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+
+
+/*slider css*/
+
+
+.slider-inner {
+    width: 400px;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+    float: left;
+    padding: 1px;
+    
+}
+
+    .slider-inner img {
+        display: none;
+        width: 400px;
+        height: auto;
+    }
+
+        .slider-inner img.active {
+            display: inline-block;
+            width: 400px;
+            height: auto;
+        }
+
+.prev{
+    float: left;
+    margin-top: 180px;
+    cursor: pointer;
+}
+
+/*.nextbutton {
+    float: right;
+    margin-top: -220px;
+    cursor: pointer;
+}
+
+.prevbutton {
+    position: relative;
+    margin-right: -45px;
+    z-index: 100;
+}
+
+.nextbutton {
+    position: relative;
+    margin-left: -45px;
+    z-index: 100;
+}*/
+
+
+

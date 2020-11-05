@@ -14,6 +14,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using eMobile.Data.Repository.IRepository;
 using eMobile.Data.Repository;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace eMobile
 {
@@ -35,6 +37,8 @@ namespace eMobile
             services.AddDefaultIdentity<IdentityUser>(/*options => options.SignIn.RequireConfirmedAccount = true*/)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddSingleton<IFileProvider>(new PhysicalFileProvider(
+             Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
         }

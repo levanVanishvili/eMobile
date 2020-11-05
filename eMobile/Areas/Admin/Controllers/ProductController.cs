@@ -7,6 +7,7 @@ using eMobile.Data.Repository.IRepository;
 using eMobile.Models;
 using eMobile.Models.ViewModels;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -62,7 +63,7 @@ namespace eMobile.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(ProductVM productVM)
+        public IActionResult Upsert(ProductVM productVM, IFormFile[] photos)
         {
             if (ModelState.IsValid)
             {
@@ -97,6 +98,19 @@ namespace eMobile.Areas.Admin.Controllers
                     {
                         Product objFromDb = _unitOfWork.Product.Get(productVM.Product.Id);
                         productVM.Product.FileUrl = objFromDb.FileUrl;
+                    }
+                }
+                if (photos != null)
+                {
+                    //upload photo files in wwwroot folder
+                    productVM.Product.Fieles = new List<string>();
+                    foreach (IFormFile file in photos)
+                    {
+                        var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/photos",
+                                   productVM.Product.Id + productVM.Product.Name + file.FileName);
+                        var stream = new FileStream(path, FileMode.Create);
+                        file.CopyToAsync(stream);
+                        productVM.Product.Fieles.Add(file.FileName);
                     }
                 }
 
